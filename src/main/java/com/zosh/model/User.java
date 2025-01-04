@@ -1,6 +1,7 @@
 package com.zosh.model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -45,8 +46,8 @@ public class User {
     @OneToMany
     private Set<Address> addresses = new HashSet<>();
 
-    @ManyToMany
-    @JsonIgnore
-    private Set<Coupon> usedCoupons = new HashSet<>();
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore  // Prevent circular reference
+    private List<Reports> reports;
 
 }
